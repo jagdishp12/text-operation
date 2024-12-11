@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  <title>Text Operations</title>
+   <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .text-box {
+      display: flex;
+      flex-direction: column;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      resize: none;
+    }
+    .output-section {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      cursor: pointer;
+    }
+    @media (max-width: 600px) {
+  .output-section {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  button {
+    width: 90%; 
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <h1>Text Operations</h1>
+  <div class="text-box">
+    <div>
+      <h3>Input Text:</h3>
+      <textarea id="inputText" placeholder="Enter your text here..."></textarea>
+    </div>
+    <div>
+      <h3>Output Text:</h3>
+      <textarea id="outputText" readonly></textarea>
+    </div>
+  </div>
+  <div class="output-section">
+    <button onclick="performOperation('uppercase')">Convert to Uppercase</button>
+    <button onclick="performOperation('lowercase')">Convert to Lowercase</button>
+    <button onclick="performOperation('wordCount')">Count Words</button>
+    <button onclick="performOperation('charCount')">Count Characters</button>
+  </div>
+  <script>
+    function performOperation(operation) {
+      const inputText = document.getElementById('inputText').value;
+      const outputText = document.getElementById('outputText');
+      let output = '';
+
+      switch (operation) {
+        case 'uppercase':
+          output = inputText.toUpperCase();
+          break;
+        case 'lowercase':
+          output = inputText.toLowerCase();
+          break;
+        case 'wordCount':
+          const wordCount = inputText.split(" ").length;
+          output = `Word Count: ${wordCount}`;
+          break;
+        case 'charCount':
+          const charCount = inputText.length;
+          output = `Character Count: ${charCount}`;
+          break;
+        default:
+          output = 'Invalid operation';
+      }
+      outputText.value = output;
+    }
+  </script>
+
+</body>
+</html>
